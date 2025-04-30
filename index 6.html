@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alpine & Amadeus – Deluxe with Music & Images</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <style>
+    body { margin: 0; font-family:'Segoe UI',sans-serif; background:#f8f9fa; color:#222; }
+    audio { display:none; }
+    header {
+      background-image: url('https://images.unsplash.com/photo-1508261305473-7f74986caccf?auto=format&fit=crop&w=1800&q=80');
+      background-size: cover; background-position: center;
+      padding:2rem; position:relative; text-align:center; color:white;
+    }
+    header::after {
+      content:""; position:absolute; top:0;left:0;width:100%;height:100%;
+      background:rgba(0,0,0,0.5); z-index:0;
+    }
+    .brand {
+      font-family:'Playfair Display',serif; font-size:2rem; font-weight:bold;
+      position:relative; z-index:1;
+    }
+    nav {
+      background:white; padding:1rem; text-align:center; box-shadow:0 2px 4px rgba(0,0,0,0.1);
+    }
+    nav a { margin:0 1rem; text-decoration:none; color:#333; font-weight:500; }
+    nav a:hover { color:#d4af37; }
+    .container {
+      max-width:800px; margin:2rem auto; padding:2rem; background:white;
+      border-radius:16px; box-shadow:0 0 12px rgba(0,0,0,0.06);
+    }
+    h2 { font-family:'Playfair Display',serif; text-align:center; color:#222; }
+    input,button,textarea {
+      width:100%; padding:0.6rem; margin:0.5rem 0;
+      border-radius:8px; border:1px solid #ccc; font-size:1rem;
+    }
+    button {
+      background:#d4af37; color:black; font-weight:bold; border:none; cursor:pointer;
+      transition:background 0.3s;
+    }
+    button:hover { background:#c59e2f; }
+    #priceOutput,#successMsg {
+      margin-top:1rem; text-align:center; font-weight:bold; color:#007bff;
+    }
+    .call-now {
+      text-align:center; font-size:1.2rem; margin-top:2rem;
+      font-weight:bold; color:#d4af37;
+    }
+    .services { margin-top:2rem; }
+    .service-card {
+      background:#fafafa; border-left:4px solid #d4af37;
+      padding:1rem; margin-bottom:1.5rem; border-radius:8px;
+    }
+    .service-card img {
+      width:100%; max-height:150px; object-fit:cover; border-radius:6px;
+      margin-bottom:0.5rem;
+    }
+    footer {
+      background:#222; color:#fff; padding:2rem; text-align:center;
+      font-family:'Playfair Display',serif;
+    }
+    .quote { font-style:italic; margin-bottom:0.5rem; }
+  </style>
+</head>
+<body onload="playMusic()">
+  <audio id="mozart" loop>
+    <source src="https://upload.wikimedia.org/wikipedia/commons/4/4c/Mozart_Clarinet_Concerto_Adagio.mp3" type="audio/mpeg">
+  </audio>
+  <header>
+    <div class="brand">Alpine & Amadeus</div>
+  </header>
+  <nav>
+    <a href="#">Home</a><a href="#">Journal</a><a href="#">Services</a><a href="#">Contact</a>
+  </nav>
+  <div class="container">
+    <h2>Calculate your fixed price ride</h2>
+    <input id="start" type="text" placeholder="Start Address" required>
+    <input id="end" type="text" placeholder="Destination Address" required>
+    <button onclick="calculateRoute()">Calculate Price</button>
+    <div id="priceOutput"></div>
+    <h2>Book Now via WhatsApp</h2>
+    <input id="name" type="text" placeholder="Your Name" required>
+    <input id="phone" type="text" placeholder="Phone Number" required>
+    <textarea id="comment" placeholder="Special wishes (optional)"></textarea>
+    <button onclick="sendWhatsApp()">Send Order</button>
+    <div id="successMsg"></div>
+    <div class="call-now">Call Now: +43 660 6109666</div>
+    <h2>Our Services</h2>
+    <div class="services">
+      <div class="service-card">
+        <img src="https://images.unsplash.com/photo-1582719473952-2d0afb7a783b?auto=format&fit=crop&w=800&q=60" alt="Airport Transfer">
+        <h3>Airport Transfer</h3>
+        <p>Professional airport transportation with fixed prices and punctual service.</p>
+      </div>
+      <div class="service-card">
+        <img src="https://images.unsplash.com/photo-1516574187841-cb9cc2ca948b?auto=format&fit=crop&w=800&q=60" alt="Ski Transfer">
+        <h3>Ski Transfer</h3>
+        <p>Comfortable transfer to all major ski resorts in Austria – Zell am See, Ischgl, Kitzbühel, and more.</p>
+      </div>
+      <div class="service-card">
+        <img src="https://images.unsplash.com/photo-1518166252389-304f2f1b7578?auto=format&fit=crop&w=800&q=60" alt="City Sightseeing">
+        <h3>City Sightseeing</h3>
+        <p>Explore Salzburg’s beauty with private guided sightseeing tours.</p>
+      </div>
+      <div class="service-card">
+        <img src="https://images.unsplash.com/photo-1511910849309-0ba5afb7dc81?auto=format&fit=crop&w=800&q=60" alt="Vehicle Delivery">
+        <h3>Vehicle Delivery</h3>
+        <p>Discreet and reliable car delivery and pick-up service throughout Austria.</p>
+      </div>
+    </div>
+  </div>
+  <footer>
+    <div class="quote">"Music is the heart of Salzburg – and so is elegance."</div>
+    <div>– Inspired by Mozart</div>
+  </footer>
+  <script>
+    function playMusic(){document.getElementById('mozart').play().catch(()=>{});}
+    let autocompleteStart,autocompleteEnd,directionsService;
+    function initAutocomplete(){
+      autocompleteStart=new google.maps.places.Autocomplete(document.getElementById('start'));
+      autocompleteEnd=new google.maps.places.Autocomplete(document.getElementById('end'));
+      directionsService=new google.maps.DirectionsService();
+    }
+    function calculateRoute(){
+      const s=document.getElementById('start').value, e=document.getElementById('end').value;
+      if(!s||!e){alert('Enter both addresses');return;}
+      directionsService.route({origin:s,destination:e,travelMode:'DRIVING'}, (res,st)=>{
+        if(st==='OK'){const d=res.routes[0].legs[0].distance.value/1000;document.getElementById('priceOutput').innerText=`Distance: ${d.toFixed(2)} km\nFixed Price: €${(d*2.5).toFixed(2)}`;} else document.getElementById('priceOutput').innerText='Error, check addresses.';});
+    }
+    function sendWhatsApp(){
+      const s=document.getElementById('start').value,e=document.getElementById('end').value,n=document.getElementById('name').value,p=document.getElementById('phone').value,c=document.getElementById('comment').value,price=document.getElementById('priceOutput').innerText;
+      if(!s||!e||!n||!p){alert('Fill required fields');return;}
+      window.open(`https://wa.me/436606109666?text=${encodeURIComponent(`Hello, my name is ${n}. From: ${s} To: ${e} ${price} Phone: ${p} Comment: ${c}`)}`,'_blank');
+      document.getElementById('successMsg').innerText='Thank you! We will contact you shortly.';
+    }
+  </script>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places&callback=initAutocomplete"></script>
+</body>
+</html>
