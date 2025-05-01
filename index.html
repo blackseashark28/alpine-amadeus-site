@@ -8,32 +8,71 @@
   <style>
     /* Grundlayout */
     body { margin:0; font-family:'Segoe UI',sans-serif; background:#f8f9fa; color:#222; }
-    header { background:url('assets/images/salzburg_alps_header.jpg') center/cover; position:relative; padding:2rem; text-align:center; color:#fff; }
+    header {
+      background: url('https://source.unsplash.com/1600x900/?salzburg,alps') center/cover;
+      position:relative; padding:2rem; text-align:center; color:#fff;
+    }
     header::after { content:""; position:absolute; inset:0; background:rgba(0,0,0,0.5); }
-    .brand { position:relative; z-index:1; font-family:'Playfair Display',serif; font-size:2rem; font-weight:bold; }
-    nav { background:#fff; padding:1rem; text-align:center; box-shadow:0 2px 4px rgba(0,0,0,0.1); }
-    nav a { margin:0 1rem; color:#333; text-decoration:none; font-weight:500; }
+    .brand {
+      position:relative; z-index:1;
+      font-family:'Playfair Display',serif; font-size:2.5rem; font-weight:bold;
+    }
+    nav {
+      background:#fff; padding:1rem; text-align:center;
+      box-shadow:0 2px 4px rgba(0,0,0,0.1);
+    }
+    nav a {
+      margin:0 1rem; color:#333; text-decoration:none; font-weight:500;
+    }
     nav a:hover { color:#d4af37; }
-    .container { max-width:800px; margin:2rem auto; padding:2rem; background:#fff; border-radius:16px; box-shadow:0 0 12px rgba(0,0,0,0.06); }
-    h2 { font-family:'Playfair Display',serif; text-align:center; color:#222; margin-top:1.5rem; }
-    input, textarea, button { width:100%; margin:0.5rem 0; padding:0.6rem; border:1px solid #ccc; border-radius:8px; font-size:1rem; }
-    button { background:#d4af37; color:#000; border:none; font-weight:bold; cursor:pointer; transition:background 0.3s; }
+    .container {
+      max-width:800px; margin:2rem auto; padding:2rem;
+      background:#fff; border-radius:16px;
+      box-shadow:0 0 12px rgba(0,0,0,0.06);
+    }
+    h2 {
+      font-family:'Playfair Display',serif;
+      text-align:center; color:#222; margin-top:1.5rem;
+    }
+    input, textarea, button {
+      width:100%; margin:0.5rem 0; padding:0.6rem;
+      border:1px solid #ccc; border-radius:8px; font-size:1rem;
+    }
+    button {
+      background:#d4af37; color:#000; border:none;
+      font-weight:bold; cursor:pointer; transition:background 0.3s;
+    }
     button:hover { background:#c59e2f; }
-    #priceOutput, #successMsg { text-align:center; font-weight:bold; margin-top:1rem; color:#007bff; }
-    .call-now { text-align:center; margin:2rem 0; font-size:1.2rem; font-weight:bold; color:#d4af37; }
+    #priceOutput, #successMsg {
+      text-align:center; font-weight:bold; margin-top:1rem; color:#007bff;
+    }
+    .call-now {
+      text-align:center; margin:2rem 0; font-size:1.2rem;
+      font-weight:bold; color:#d4af37;
+    }
     .services { margin-top:2rem; }
-    .service-card { background:#fafafa; border-left:4px solid #d4af37; padding:1rem; margin-bottom:1.5rem; border-radius:8px; }
-    .service-card h3 { margin-bottom:0.5rem; }
-    .service-card img { width:100%; height:auto; border-radius:6px; margin-bottom:0.5rem; }
-    footer { background:#222; color:#fff; padding:2rem; text-align:center; font-family:'Playfair Display',serif; }
+    .service-card {
+      background:#fafafa; border-left:4px solid #d4af37;
+      padding:1rem; margin-bottom:1.5rem; border-radius:8px;
+    }
+    .service-card h3 {
+      margin-bottom:0.5rem; font-size:1.3rem;
+    }
+    .service-card img {
+      width:100%; height:auto; border-radius:6px; margin-bottom:0.5rem;
+    }
+    footer {
+      background:#222; color:#fff; padding:2rem; text-align:center;
+      font-family:'Playfair Display',serif;
+    }
     .quote { font-style:italic; margin-bottom:0.5rem; }
   </style>
 </head>
 <body>
 
-  <!-- 1. Audio-Player aus lokalem Repo -->
-  <audio controls autoplay loop style="width:100%; margin:1rem 0;">
-    <source src="assets/audio/mozart-adagio.mp3" type="audio/mpeg">
+  <!-- 1) Audio-Player -->
+  <audio controls preload="auto" loop style="width:100%; margin:1rem 0;">
+    <source src="https://upload.wikimedia.org/wikipedia/commons/4/4c/Mozart_Clarinet_Concerto_Adagio.mp3" type="audio/mpeg">
     Dein Browser unterstützt kein Audio.
   </audio>
 
@@ -50,14 +89,14 @@
 
   <div class="container">
     <h2>Calculate your fixed price ride</h2>
-    <input id="start" placeholder="Start Address" required>
-    <input id="end"   placeholder="Destination Address" required>
+    <input id="start" placeholder="Start Address">
+    <input id="end"   placeholder="Destination Address">
     <button onclick="calculateRoute()">Calculate Price</button>
     <div id="priceOutput"></div>
 
     <h2>Book Now via WhatsApp</h2>
-    <input id="name"    placeholder="Your Name" required>
-    <input id="phone"   placeholder="Phone Number" required>
+    <input id="name"    placeholder="Your Name">
+    <input id="phone"   placeholder="Phone Number">
     <textarea id="comment" placeholder="Special wishes (optional)"></textarea>
     <button onclick="sendWhatsApp()">Send Order</button>
     <div id="successMsg"></div>
@@ -66,26 +105,31 @@
 
     <h2>Our Services</h2>
     <div class="services">
+
       <div class="service-card">
         <h3>Airport Transfer</h3>
-        <img src="assets/images/airport.jpg" alt="Airport Transfer">
+        <img src="https://source.unsplash.com/ZWArJ01tdEU/800x600" alt="Airport Transfer">
         <p>Professional airport transportation with fixed prices and punctual service.</p>
       </div>
+
       <div class="service-card">
         <h3>Ski Transfer</h3>
-        <img src="assets/images/ski_resort.jpg" alt="Ski Transfer">
+        <img src="https://images.unsplash.com/photo-1549956488-3cdd1a9dd989?auto=format&fit=crop&w=800&q=60" alt="Ski Transfer">
         <p>Comfortable transfer to all major ski resorts in Austria – Zell am See, Ischgl, Kitzbühel, and more.</p>
       </div>
+
       <div class="service-card">
         <h3>City Sightseeing</h3>
-        <img src="assets/images/city_sightseeing.jpg" alt="City Sightseeing">
+        <img src="https://images.unsplash.com/photo-1533167640700-483a5d02840b?auto=format&fit=crop&w=800&q=60" alt="City Sightseeing">
         <p>Explore Salzburg’s beauty with private guided sightseeing tours.</p>
       </div>
+
       <div class="service-card">
         <h3>Vehicle Delivery</h3>
-        <img src="assets/images/vehicle_delivery.jpg" alt="Vehicle Delivery">
+        <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=800&q=60" alt="Vehicle Delivery">
         <p>Discreet and reliable car delivery and pick-up service throughout Austria.</p>
       </div>
+
     </div>
   </div>
 
@@ -95,32 +139,42 @@
   </footer>
 
   <script>
-    // Google Maps & WhatsApp-Funktionen
     let autocompleteStart, autocompleteEnd, directionsService;
     function initAutocomplete(){
-      autocompleteStart=new google.maps.places.Autocomplete(document.getElementById('start'));
-      autocompleteEnd=new google.maps.places.Autocomplete(document.getElementById('end'));
-      directionsService=new google.maps.DirectionsService();
+      autocompleteStart = new google.maps.places.Autocomplete(document.getElementById('start'));
+      autocompleteEnd   = new google.maps.places.Autocomplete(document.getElementById('end'));
+      directionsService = new google.maps.DirectionsService();
     }
     function calculateRoute(){
-      const s=document.getElementById('start').value, e=document.getElementById('end').value;
-      if(!s||!e){alert('Enter both addresses');return;}
-      directionsService.route({origin:s,destination:e,travelMode:'DRIVING'},
-        (res,st)=>{if(st==='OK'){const d=res.routes[0].legs[0].distance.value/1000;
-          document.getElementById('priceOutput').innerText=
-            `Distance: ${d.toFixed(2)} km\nFixed Price: €${(d*2.5).toFixed(2)}`;}
-          else document.getElementById('priceOutput').innerText='Error, check addresses.';}
-      );
+      const s = document.getElementById('start').value,
+            e = document.getElementById('end').value;
+      if(!s||!e){ alert('Please enter both addresses.'); return; }
+      directionsService.route({
+        origin: s, destination: e, travelMode: 'DRIVING'
+      }, (res, st) => {
+        if(st==='OK'){
+          const d = res.routes[0].legs[0].distance.value/1000;
+          document.getElementById('priceOutput').innerText =
+            `Distance: ${d.toFixed(2)} km – Fixed Price: €${(d*2.5).toFixed(2)}`;
+        } else {
+          document.getElementById('priceOutput').innerText = 'Error calculating route.';
+        }
+      });
     }
     function sendWhatsApp(){
-      const s=document.getElementById('start').value, e=document.getElementById('end').value,
-            n=document.getElementById('name').value, p=document.getElementById('phone').value,
-            c=document.getElementById('comment').value, price=document.getElementById('priceOutput').innerText;
-      if(!s||!e||!n||!p){alert('Fill required fields');return;}
-      window.open(`https://wa.me/436606109666?text=${encodeURIComponent(
-        `Hello, my name is ${n}.\nFrom: ${s}\nTo: ${e}\n${price}\nPhone: ${p}\nComment: ${c}`
-      )}`,'_blank');
-      document.getElementById('successMsg').innerText='Thank you! We will contact you shortly.';
+      const s = document.getElementById('start').value,
+            e = document.getElementById('end').value,
+            n = document.getElementById('name').value,
+            p = document.getElementById('phone').value,
+            c = document.getElementById('comment').value,
+            price = document.getElementById('priceOutput').innerText;
+      if(!s||!e||!n||!p){ alert('Please fill all required fields.'); return; }
+      window.open(
+        `https://wa.me/436606109666?text=${encodeURIComponent(
+          `Hello, my name is ${n}.\nFrom: ${s}\nTo: ${e}\n${price}\nPhone: ${p}\nComment: ${c}`
+        )}`, '_blank'
+      );
+      document.getElementById('successMsg').innerText = 'Thank you! We will contact you shortly.';
     }
   </script>
   <script async defer
