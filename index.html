@@ -14,27 +14,63 @@
     header::after {
       content:""; position:absolute; inset:0; background:rgba(0,0,0,0.5);
     }
-    .brand { position:relative; z-index:1; font-family:'Playfair Display',serif; font-size:2rem; font-weight:bold; }
-    nav { background:#fff; padding:1rem; text-align:center; box-shadow:0 2px 4px rgba(0,0,0,0.1); }
-    nav a { margin:0 1rem; color:#333; text-decoration:none; font-weight:500; }
+    .brand {
+      position:relative; z-index:1;
+      font-family:'Playfair Display',serif;
+      font-size:2rem; font-weight:bold;
+    }
+    nav {
+      background:#fff; padding:1rem; text-align:center;
+      box-shadow:0 2px 4px rgba(0,0,0,0.1);
+    }
+    nav a {
+      margin:0 1rem; color:#333; text-decoration:none; font-weight:500;
+    }
     nav a:hover { color:#d4af37; }
-    .container { max-width:800px; margin:2rem auto; padding:2rem; background:#fff; border-radius:16px; box-shadow:0 0 12px rgba(0,0,0,0.06); }
-    h2 { font-family:'Playfair Display',serif; text-align:center; color:#222; }
-    input, textarea, button { width:100%; margin:0.5rem 0; padding:0.6rem; border:1px solid #ccc; border-radius:8px; font-size:1rem; }
-    button { background:#d4af37; color:#000; border:none; font-weight:bold; cursor:pointer; }
+    .container {
+      max-width:800px; margin:2rem auto; padding:2rem;
+      background:#fff; border-radius:16px;
+      box-shadow:0 0 12px rgba(0,0,0,0.06);
+    }
+    h2 {
+      font-family:'Playfair Display',serif; text-align:center; color:#222;
+    }
+    input, textarea, button {
+      width:100%; margin:0.5rem 0; padding:0.6rem;
+      border:1px solid #ccc; border-radius:8px; font-size:1rem;
+    }
+    button {
+      background:#d4af37; color:#000; border:none;
+      font-weight:bold; cursor:pointer; transition:background 0.3s;
+    }
     button:hover { background:#c59e2f; }
-    #priceOutput,#successMsg { text-align:center; font-weight:bold; margin-top:1rem; color:#007bff; }
-    .call-now { text-align:center; margin:2rem 0; font-size:1.2rem; font-weight:bold; color:#d4af37; }
+    #priceOutput, #successMsg {
+      text-align:center; font-weight:bold; margin-top:1rem; color:#007bff;
+    }
+    /* Neu: Bilder nicht zuschneiden, vollständig anzeigen */
+    .service-card img {
+      width:100%; height:auto; object-fit:contain;
+      border-radius:6px; margin-bottom:0.5rem;
+    }
+    .call-now {
+      text-align:center; margin:2rem 0; font-size:1.2rem;
+      font-weight:bold; color:#d4af37;
+    }
     .services { margin-top:2rem; }
-    .service-card { background:#fafafa; border-left:4px solid #d4af37; padding:1rem; margin-bottom:1.5rem; border-radius:8px; }
-    .service-card img { width:100%; height:150px; object-fit:cover; border-radius:6px; margin-bottom:0.5rem; }
-    footer { background:#222; color:#fff; padding:2rem; text-align:center; font-family:'Playfair Display',serif; }
+    .service-card {
+      background:#fafafa; border-left:4px solid #d4af37;
+      padding:1rem; margin-bottom:1.5rem; border-radius:8px;
+    }
+    footer {
+      background:#222; color:#fff; padding:2rem; text-align:center;
+      font-family:'Playfair Display',serif;
+    }
     .quote { font-style:italic; margin-bottom:0.5rem; }
   </style>
 </head>
 <body>
-  <!-- Musik mit Player -->
-  <audio controls autoplay loop style="width:100%; outline:none; margin-top:0.5rem;">
+  <!-- Sichtbarer Audio-Player -->
+  <audio controls autoplay loop style="width:100%; margin:1rem 0;">
     <source src="https://upload.wikimedia.org/wikipedia/commons/4/4c/Mozart_Clarinet_Concerto_Adagio.mp3" type="audio/mpeg">
     Dein Browser unterstützt kein Audio.
   </audio>
@@ -48,14 +84,14 @@
 
   <div class="container">
     <h2>Calculate your fixed price ride</h2>
-    <input id="start"   type="text" placeholder="Start Address" required>
-    <input id="end"     type="text" placeholder="Destination Address" required>
+    <input id="start" placeholder="Start Address" required>
+    <input id="end"   placeholder="Destination Address" required>
     <button onclick="calculateRoute()">Calculate Price</button>
     <div id="priceOutput"></div>
 
     <h2>Book Now via WhatsApp</h2>
-    <input id="name"    type="text" placeholder="Your Name" required>
-    <input id="phone"   type="text" placeholder="Phone Number" required>
+    <input id="name" placeholder="Your Name" required>
+    <input id="phone" placeholder="Phone Number" required>
     <textarea id="comment" placeholder="Special wishes (optional)"></textarea>
     <button onclick="sendWhatsApp()">Send Order</button>
     <div id="successMsg"></div>
@@ -65,7 +101,7 @@
     <h2>Our Services</h2>
     <div class="services">
       <div class="service-card">
-        <img src="https://images.unsplash.com/photo-1561484936-8da973e8437e?auto=format&fit=crop&w=800&q=60" alt="Airport Transfer">
+        <img src="https://images.unsplash.com/photo-1582719473952-2d0afb7a783b?auto=format&fit=crop&w=800&q=60" alt="Airport Transfer">
         <h3>Airport Transfer</h3>
         <p>Professional airport transportation with fixed prices and punctual service.</p>
       </div>
@@ -75,7 +111,7 @@
         <p>Comfortable transfer to all major ski resorts in Austria – Zell am See, Ischgl, Kitzbühel, and more.</p>
       </div>
       <div class="service-card">
-        <img src="https://images.unsplash.com/photo-1536305030535-a3b4d0f1208c?auto=format&fit=crop&w=800&q=60" alt="City Sightseeing">
+        <img src="https://images.unsplash.com/photo-1533167640700-483a5d02840b?auto=format&fit=crop&w=800&q=60" alt="City Sightseeing">
         <h3>City Sightseeing</h3>
         <p>Explore Salzburg’s beauty with private guided sightseeing tours.</p>
       </div>
@@ -93,43 +129,39 @@
   </footer>
 
   <script>
-    // Google Maps & WhatsApp functions (wie gehabt)
     let autocompleteStart, autocompleteEnd, directionsService;
-    function initAutocomplete() {
+    function initAutocomplete(){
       autocompleteStart = new google.maps.places.Autocomplete(document.getElementById('start'));
       autocompleteEnd   = new google.maps.places.Autocomplete(document.getElementById('end'));
       directionsService = new google.maps.DirectionsService();
     }
-    function calculateRoute() {
+    function calculateRoute(){
       const s = document.getElementById('start').value,
             e = document.getElementById('end').value;
-      if (!s||!e) { alert('Enter both addresses'); return; }
-      directionsService.route({ origin:s, destination:e, travelMode:'DRIVING' },
-        (res,st) => {
-          if (st==='OK') {
-            const d = res.routes[0].legs[0].distance.value/1000;
-            document.getElementById('priceOutput').innerText =
-              `Distance: ${d.toFixed(2)} km\nFixed Price: €${(d*2.5).toFixed(2)}`;
-          } else {
-            document.getElementById('priceOutput').innerText = 'Error, check addresses.';
-          }
+      if(!s||!e){alert('Enter both addresses');return;}
+      directionsService.route({origin:s,destination:e,travelMode:'DRIVING'}, (res,st)=>{
+        if(st==='OK'){
+          const d = res.routes[0].legs[0].distance.value/1000;
+          document.getElementById('priceOutput').innerText=
+            `Distance: ${d.toFixed(2)} km\nFixed Price: €${(d*2.5).toFixed(2)}`;
+        } else {
+          document.getElementById('priceOutput').innerText='Error, check addresses.';
         }
-      );
+      });
     }
-    function sendWhatsApp() {
-      const s = document.getElementById('start').value,
-            e = document.getElementById('end').value,
-            n = document.getElementById('name').value,
-            p = document.getElementById('phone').value,
-            c = document.getElementById('comment').value,
-            price = document.getElementById('priceOutput').innerText;
-      if (!s||!e||!n||!p) { alert('Fill required fields'); return; }
+    function sendWhatsApp(){
+      const s=document.getElementById('start').value,
+            e=document.getElementById('end').value,
+            n=document.getElementById('name').value,
+            p=document.getElementById('phone').value,
+            c=document.getElementById('comment').value,
+            price=document.getElementById('priceOutput').innerText;
+      if(!s||!e||!n||!p){alert('Fill required fields');return;}
       window.open(
-        `https://wa.me/436606109666?text=${encodeURIComponent(
-          `Hello, my name is ${n}.\nFrom: ${s}\nTo: ${e}\n${price}\nPhone: ${p}\nComment: ${c}`
-        )}`, '_blank'
+        `https://wa.me/436606109666?text=${encodeURIComponent(`Hello, my name is ${n}.\nFrom: ${s}\nTo: ${e}\n${price}\nPhone: ${p}\nComment: ${c}`)}`,
+        '_blank'
       );
-      document.getElementById('successMsg').innerText = 'Thank you! We will contact you shortly.';
+      document.getElementById('successMsg').innerText='Thank you! We will contact you shortly.';
     }
   </script>
   <script async defer
