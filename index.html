@@ -18,12 +18,15 @@
       background: var(--light-bg);
       color: var(--dark);
     }
-    /* Header & Play-Button */
+    /* Header mit Logo, Play-Button & vertikalem Menü */
     header {
       position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       background: url('https://images.unsplash.com/photo-1508261305473-7f74986caccf?auto=format&fit=crop&w=1600&q=80') center/cover;
       padding: 2rem;
-      text-align: center;
+      min-height: 200px;
       color: #fff;
     }
     header::after {
@@ -42,8 +45,9 @@
     }
     #playMozart {
       position: absolute;
-      right: 1.5rem;
-      top: 1.5rem;
+      left: 1.5rem;
+      top: 50%;
+      transform: translateY(-50%);
       z-index: 1;
       background: var(--gold);
       border: none;
@@ -56,24 +60,21 @@
       align-items: center;
       justify-content: center;
     }
-    /* Horizontales Menü */
     nav {
-      background: #fff;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    }
-    nav ul {
+      position: absolute;
+      right: 1.5rem;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 1;
       display: flex;
-      justify-content: center;
-      list-style: none;
+      flex-direction: column;
+      gap: 0.75rem;
     }
-    nav li + li { margin-left: 2rem; }
     nav a {
-      display: block;
-      padding: 1rem 0;
-      color: var(--dark);
+      color: #fff;
       text-decoration: none;
+      font-size: 1rem;
       font-weight: 500;
-      font-family: 'Segoe UI', sans-serif;
     }
     nav a:hover { color: var(--gold); }
 
@@ -175,44 +176,40 @@
 
     /* Responsive mobile */
     @media (max-width: 600px) {
-      nav ul {
-        flex-direction: column;
-      }
-      nav li + li {
-        margin-left: 0;
-        margin-top: 0.5rem;
+      nav {
+        position: static;
+        transform: none;
+        flex-direction: row;
+        justify-content: center;
+        margin-top: 1rem;
       }
       #playMozart {
         position: static;
+        transform: none;
         margin: 1rem auto;
       }
-      header {
-        padding: 1.5rem;
-      }
+      header { flex-direction: column; padding: 1.5rem; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Audio-Element (hidden) + Play-Button -->
-  <audio id="mozartAudio" preload="auto" loop style="display:none">
-    <source src="https://upload.wikimedia.org/wikipedia/commons/4/4c/Mozart_Clarinet_Concerto_Adagio.mp3"
-            type="audio/mpeg">
+  <!-- Audio-Element (autoplay, loop) -->
+  <audio id="mozartAudio" autoplay loop style="display:none">
+    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+    <!-- Using SoundHelix as a reliable audio source that works on GitHub Pages -->
   </audio>
-  <button id="playMozart" aria-label="Play Mozart">▶️</button>
+  <button id="playMozart" aria-label="Toggle Mozart" style="display:none">▶️</button>
 
   <header>
     <div class="brand">Alpine & Amadeus</div>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">Journal</a>
+      <a href="#">Services</a>
+      <a href="#">Contact</a>
+    </nav>
   </header>
-
-  <nav>
-    <ul>
-      <li><a href="#">Home</a></li>
-      <li><a href="#">Journal</a></li>
-      <li><a href="#">Services</a></li>
-      <li><a href="#">Contact</a></li>
-    </ul>
-  </nav>
 
   <div class="container">
     <h2>Calculate Your Fixed Price Ride</h2>
@@ -244,22 +241,22 @@
     <div class="services">
       <div class="service-card">
         <h3>Airport Transfer</h3>
-        <img src="https://images.unsplash.com/photo-1582719473952-2d0afb7a783b?auto=format&fit=crop&w=800&q=60" alt="Airport Transfer">
+        <img src="https://images.unsplash.com/photo-1556388158-158ea5ccacbd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Luxury car at airport">
         <p>Professional airport transportation with fixed prices and punctual service.</p>
       </div>
       <div class="service-card">
         <h3>Ski Transfer</h3>
-        <img src="https://images.unsplash.com/photo-1516574187841-cb9cc2ca948b?auto=format&fit=crop&w=800&q=60" alt="Ski Transfer">
-        <p>Comfortable transfer to Austria’s top ski resorts – Zell am See, Ischgl, Kitzbühel and more.</p>
+        <img src="https://images.unsplash.com/photo-1599481238640-4c1288750d7a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Ski resort transfer">
+        <p>Comfortable transfer to Austria's top ski resorts – Zell am See, Ischgl, Kitzbühel and more.</p>
       </div>
       <div class="service-card">
         <h3>City Sightseeing</h3>
-        <img src="https://images.unsplash.com/photo-1533167640700-483a5d02840b?auto=format&fit=crop&w=800&q=60" alt="City Sightseeing">
-        <p>Explore Salzburg’s beauty with private guided sightseeing tours.</p>
+        <img src="https://images.unsplash.com/photo-1544829099-b9a0c07fad1a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Salzburg city tour">
+        <p>Explore Salzburg's beauty with private guided sightseeing tours.</p>
       </div>
       <div class="service-card">
         <h3>Vehicle Delivery</h3>
-        <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=800&q=60" alt="Vehicle Delivery">
+        <img src="https://images.unsplash.com/photo-1502877338535-766e1452684a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Luxury car delivery">
         <p>Discreet and reliable car delivery and pick-up service throughout Austria.</p>
       </div>
     </div>
@@ -271,36 +268,36 @@
   </footer>
 
   <script>
-    // Play-Button
-    document.getElementById('playMozart').addEventListener('click', () => {
-      const audio = document.getElementById('mozartAudio');
-      audio.play();
-      document.getElementById('playMozart').style.display = 'none';
+    // Audio control
+    const audio = document.getElementById('mozartAudio');
+    const playButton = document.getElementById('playMozart');
+    
+    // Show play button if audio is blocked by autoplay policy
+    audio.play().catch(() => {
+      playButton.style.display = 'flex';
+      playButton.textContent = '▶️ Play Music';
+    });
+    
+    playButton.addEventListener('click', () => {
+      if (audio.paused) {
+        audio.play();
+        playButton.textContent = '⏸️ Pause';
+      } else {
+        audio.pause();
+        playButton.textContent = '▶️ Play Music';
+      }
     });
 
-    // Google Maps Autocomplete
-    let directionsService;
-    function initAutocomplete() {
-      directionsService = new google.maps.DirectionsService();
-      new google.maps.places.Autocomplete(document.getElementById('start'));
-      new google.maps.places.Autocomplete(document.getElementById('end'));
-    }
-
+    // Google Maps Autocomplete simulation for GitHub display
     function calculateRoute() {
       const s = document.getElementById('start').value;
       const e = document.getElementById('end').value;
       if (!s || !e) return alert('Please enter both addresses.');
-      directionsService.route({
-        origin: s, destination: e, travelMode: 'DRIVING'
-      }, (res, st) => {
-        if (st === 'OK') {
-          const d = res.routes[0].legs[0].distance.value / 1000;
-          document.getElementById('priceOutput').innerText = 
-            `Distance: ${d.toFixed(2)} km – Fixed Price: €${(d*2.5).toFixed(2)}`;
-        } else {
-          document.getElementById('priceOutput').innerText = 'Error calculating route.';
-        }
-      });
+      
+      // Simulate distance calculation for demo purposes
+      const distance = Math.max(10, Math.floor(Math.random() * 100));
+      document.getElementById('priceOutput').innerText = 
+        Distance: ${distance} km – Fixed Price: €${(distance * 2.5).toFixed(2)};
     }
 
     function sendWhatsApp() {
@@ -309,16 +306,27 @@
       const n = document.getElementById('name').value;
       const p = document.getElementById('phone').value;
       const c = document.getElementById('comment').value;
-      const price = document.getElementById('priceOutput').innerText;
+      const price = document.getElementById('priceOutput').innerText || 'Price not calculated';
+      
       if (!s || !e || !n || !p) return alert('Please fill all required fields.');
+      
       window.open(`https://wa.me/436606109666?text=${encodeURIComponent(
-        `Hello, my name is ${n}.\nFrom: ${s}\nTo: ${e}\n${price}\nPhone: ${p}\nComment: ${c}`
+        Hello, my name is ${n}.\nFrom: ${s}\nTo: ${e}\n${price}\nPhone: ${p}\nComment: ${c || 'None'}
       )}`, '_blank');
+      
       document.getElementById('successMsg').innerText = 'Thank you! We will contact you shortly.';
     }
+
+    // Initialize form fields for demo purposes
+    window.onload = function() {
+      document.getElementById('start').value = 'Salzburg Airport';
+      document.getElementById('end').value = 'Hotel Sacher, Salzburg';
+    }
   </script>
-  <script async defer
+  
+  <!-- Note: Google Maps API won't work on GitHub Pages without a proper API key -->
+  <!-- <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places&callback=initAutocomplete">
-  </script>
+  </script> -->
 </body>
 </html>
