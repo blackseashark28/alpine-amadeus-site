@@ -2,9 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Alpine & Amadeus – Luxury Transfers</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Alpine & Amadeus - Luxury Transfers in Salzburg. Airport transfers, ski resort transfers, city sightseeing and vehicle delivery services.">
+  <title>Alpine & Amadeus – Luxury Transfers in Salzburg</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
   <style>
     :root {
       --gold: #D4AF37;
@@ -17,15 +18,22 @@
       font-family: 'Segoe UI', sans-serif;
       background: var(--light-bg);
       color: var(--dark);
+      line-height: 1.6;
     }
-    /* Header mit Logo, Play-Button & vertikalem Menü */
+    
+    /* Header & Branding */
+    .header-wrapper {
+      background: var(--dark);
+      padding-bottom: 1px;
+    }
     header {
       position: relative;
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
-      background: url('https://images.unsplash.com/photo-1508261305473-7f74986caccf?auto=format&fit=crop&w=1600&q=80') center/cover;
-      padding: 2rem;
+      background: url('https://images.unsplash.com/photo-1551523711-5a3c0a0a9c9a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1600&q=80') center/cover;
+      padding: 3rem 1rem 6rem;
       min-height: 200px;
       color: #fff;
     }
@@ -33,132 +41,231 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: rgba(0,0,0,0.5);
+      background: rgba(0,0,0,0.6);
       z-index: 0;
     }
     .brand {
       position: relative;
       z-index: 1;
       font-family: 'Playfair Display', serif;
-      font-size: 2.5rem;
+      font-size: 2.8rem;
       font-weight: 700;
+      font-style: italic;
+      color: var(--gold);
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+      margin-bottom: 1.5rem;
     }
-    #playMozart {
-      position: absolute;
-      left: 1.5rem;
-      top: 50%;
-      transform: translateY(-50%);
+    .brand-subtitle {
+      position: relative;
       z-index: 1;
-      background: var(--gold);
-      border: none;
-      border-radius: 50%;
-      width: 3rem;
-      height: 3rem;
       font-size: 1.2rem;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      color: #fff;
+      margin-bottom: 2rem;
     }
+    
+    /* Navigation */
     nav {
-      position: absolute;
-      right: 1.5rem;
-      top: 50%;
-      transform: translateY(-50%);
-      z-index: 1;
+      position: relative;
+      width: 100%;
+      max-width: 800px;
+      margin: -2rem auto 0;
+      z-index: 10;
+      background: var(--dark);
+      border-top: 3px solid var(--gold);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    .nav-container {
       display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
+      justify-content: center;
+      padding: 0 1rem;
     }
     nav a {
       color: #fff;
       text-decoration: none;
       font-size: 1rem;
       font-weight: 500;
+      padding: 1rem 1.5rem;
+      transition: color 0.3s;
     }
-    nav a:hover { color: var(--gold); }
+    nav a:hover { 
+      color: var(--gold); 
+      text-decoration: underline;
+    }
+    
+    /* Audio Player */
+    .audio-player {
+      position: absolute;
+      right: 1rem;
+      top: 1rem;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    #toggleMusic {
+      background: var(--gold);
+      border: none;
+      border-radius: 50%;
+      width: 2.5rem;
+      height: 2.5rem;
+      font-size: 1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--dark);
+    }
+    .audio-label {
+      color: #fff;
+      font-size: 0.8rem;
+      opacity: 0.8;
+    }
 
-    /* Container & Form */
+    /* Main Content */
     .container {
       max-width: 800px;
       margin: 2rem auto;
       background: #fff;
-      border-radius: 16px;
+      border-radius: 8px;
       padding: 2rem;
       box-shadow: 0 0 12px rgba(0,0,0,0.06);
     }
     h2 {
       font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      color: var(--dark);
       text-align: center;
-      margin-bottom: 1rem;
+      margin-bottom: 1.5rem;
+      position: relative;
+      padding-bottom: 0.5rem;
     }
+    h2::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 2px;
+      background: var(--gold);
+    }
+    
+    /* Form Styles */
     .form-group {
-      margin-bottom: 1rem;
+      margin-bottom: 1.5rem;
     }
-    input, textarea {
+    input, textarea, select {
       width: 100%;
-      padding: 0.75rem;
-      border: 1px solid #ccc;
-      border-radius: 8px;
+      padding: 0.75rem 1rem;
+      border: 1px solid #ddd;
+      border-radius: 4px;
       font-size: 1rem;
       font-family: inherit;
+      transition: border 0.3s;
+    }
+    input:focus, textarea:focus, select:focus {
+      outline: none;
+      border-color: var(--gold);
+      box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.2);
+    }
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+    }
+    
+    /* Buttons */
+    button {
+      cursor: pointer;
+      transition: all 0.3s;
     }
     button.calc, button.send {
       width: 100%;
-      padding: 0.75rem;
+      padding: 1rem;
       background: var(--gold);
-      color: #111;
+      color: var(--dark);
       border: none;
-      border-radius: 8px;
+      border-radius: 4px;
       font-family: 'Playfair Display', serif;
-      font-size: 1rem;
+      font-size: 1.1rem;
       font-weight: 700;
-      cursor: pointer;
-      transition: background 0.3s;
+      text-transform: uppercase;
+      letter-spacing: 1px;
     }
-    button.calc:hover, button.send:hover { background: #c59e2f; }
-
-    #priceOutput, #successMsg {
-      text-align: center;
-      margin-top: 1rem;
-      font-weight: bold;
-      color: #007bff;
+    button.calc:hover, button.send:hover { 
+      background: #c59e2f; 
+      transform: translateY(-2px);
     }
-
-    .call-now {
-      text-align: center;
-      margin: 2rem 0;
+    button.call-now {
+      display: block;
+      margin: 2rem auto;
+      padding: 1rem 2rem;
+      background: transparent;
+      color: var(--gold);
+      border: 2px solid var(--gold);
+      border-radius: 4px;
       font-family: 'Playfair Display', serif;
       font-size: 1.2rem;
-      color: var(--gold);
+      font-weight: 700;
+    }
+    button.call-now:hover {
+      background: var(--gold);
+      color: #fff;
     }
 
-    /* Services */
+    /* Output Messages */
+    #priceOutput, #successMsg {
+      text-align: center;
+      margin-top: 1.5rem;
+      padding: 1rem;
+      border-radius: 4px;
+      font-weight: bold;
+    }
+    #priceOutput {
+      background: rgba(0, 123, 255, 0.1);
+      color: #007bff;
+      border: 1px solid rgba(0, 123, 255, 0.2);
+    }
+    #successMsg {
+      background: rgba(40, 167, 69, 0.1);
+      color: #28a745;
+      border: 1px solid rgba(40, 167, 69, 0.2);
+    }
+
+    /* Services Section */
     .services {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 1rem;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
       margin-top: 2rem;
     }
     .service-card {
       background: var(--card-bg);
       border-left: 4px solid var(--gold);
-      border-radius: 8px;
+      border-radius: 4px;
       overflow: hidden;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .service-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
     }
     .service-card h3 {
-      padding: 1rem;
+      padding: 1.2rem 1rem 0;
       font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      color: var(--dark);
     }
     .service-card img {
       width: 100%;
-      height: 150px;
+      height: 180px;
       object-fit: cover;
       display: block;
     }
     .service-card p {
-      padding: 0 1rem 1rem;
+      padding: 0 1rem 1.5rem;
       font-size: 0.95rem;
+      color: #555;
     }
 
     /* Footer */
@@ -166,167 +273,239 @@
       background: var(--dark);
       color: #fff;
       text-align: center;
-      padding: 2rem;
-      font-family: 'Playfair Display', serif;
+      padding: 3rem 1rem;
+      margin-top: 3rem;
     }
     .quote {
+      font-family: 'Playfair Display', serif;
       font-style: italic;
-      margin-bottom: 0.5rem;
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+      color: var(--gold);
+    }
+    .copyright {
+      opacity: 0.8;
+      font-size: 0.9rem;
     }
 
-    /* Responsive mobile */
-    @media (max-width: 600px) {
-      nav {
-        position: static;
-        transform: none;
-        flex-direction: row;
-        justify-content: center;
-        margin-top: 1rem;
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .brand {
+        font-size: 2.2rem;
       }
-      #playMozart {
-        position: static;
-        transform: none;
-        margin: 1rem auto;
+      .nav-container {
+        flex-direction: column;
+        align-items: center;
       }
-      header { flex-direction: column; padding: 1.5rem; }
+      nav a {
+        padding: 0.75rem 1rem;
+      }
+      .container {
+        padding: 1.5rem;
+        margin: 1.5rem;
+      }
+      .services {
+        grid-template-columns: 1fr;
+      }
+      .audio-player {
+        top: 0.5rem;
+        right: 0.5rem;
+      }
+      .audio-label {
+        display: none;
+      }
     }
   </style>
 </head>
 <body>
 
-  <!-- Audio-Element (autoplay, loop) -->
-  <audio id="mozartAudio" autoplay loop style="display:none">
+  <!-- Audio Element -->
+  <audio id="mozartAudio" loop style="display:none">
     <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
-    <!-- Using SoundHelix as a reliable audio source that works on GitHub Pages -->
   </audio>
-  <button id="playMozart" aria-label="Toggle Mozart" style="display:none">▶️</button>
 
-  <header>
-    <div class="brand">Alpine & Amadeus</div>
+  <div class="header-wrapper">
+    <header>
+      <div class="audio-player">
+        <button id="toggleMusic" aria-label="Toggle music">▶️</button>
+        <span class="audio-label">Mozart</span>
+      </div>
+      
+      <div class="brand">Alpine & Amadeus</div>
+      <div class="brand-subtitle">Luxury Transfers in Salzburg</div>
+    </header>
+
     <nav>
-      <a href="#">Home</a>
-      <a href="#">Journal</a>
-      <a href="#">Services</a>
-      <a href="#">Contact</a>
+      <div class="nav-container">
+        <a href="#">Home</a>
+        <a href="#">Journal</a>
+        <a href="#">Services</a>
+        <a href="#">Contact</a>
+      </div>
     </nav>
-  </header>
+  </div>
 
   <div class="container">
     <h2>Calculate Your Fixed Price Ride</h2>
     <div class="form-group">
-      <input id="start" type="text" placeholder="Start Address" required>
+      <label for="start">Start Address</label>
+      <input id="start" type="text" placeholder="e.g. Salzburg Airport" required>
     </div>
     <div class="form-group">
-      <input id="end" type="text" placeholder="Destination Address" required>
+      <label for="end">Destination Address</label>
+      <input id="end" type="text" placeholder="e.g. Hotel Sacher, Salzburg" required>
     </div>
     <button class="calc" onclick="calculateRoute()">Calculate Price</button>
     <div id="priceOutput"></div>
 
     <h2>Book Now via WhatsApp</h2>
     <div class="form-group">
-      <input id="name" type="text" placeholder="Your Name" required>
+      <label for="name">Your Name</label>
+      <input id="name" type="text" required>
     </div>
     <div class="form-group">
-      <input id="phone" type="text" placeholder="Phone Number" required>
+      <label for="phone">Phone Number</label>
+      <input id="phone" type="tel" placeholder="+43 " required>
     </div>
     <div class="form-group">
-      <textarea id="comment" placeholder="Special wishes (optional)"></textarea>
+      <label for="comment">Special Wishes (optional)</label>
+      <textarea id="comment" rows="3"></textarea>
     </div>
     <button class="send" onclick="sendWhatsApp()">Send Order</button>
     <div id="successMsg"></div>
 
-    <div class="call-now">Call Now: +43 660 6109666</div>
+    <button class="call-now" onclick="window.location.href='tel:+436606109666'">
+      Call Now: +43 660 6109666
+    </button>
 
     <h2>Our Services</h2>
     <div class="services">
       <div class="service-card">
+        <img src="https://images.unsplash.com/photo-1556388158-158ea5ccacbd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
+             alt="Luxury car waiting at airport arrival">
         <h3>Airport Transfer</h3>
-        <img src="https://images.unsplash.com/photo-1556388158-158ea5ccacbd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Luxury car at airport">
-        <p>Professional airport transportation with fixed prices and punctual service.</p>
+        <p>Professional airport transportation with fixed prices and punctual service to all major airports in Austria and neighboring countries.</p>
       </div>
       <div class="service-card">
+        <img src="https://images.unsplash.com/photo-1548588681-adf41d474533?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
+             alt="Ski resort with luxury transportation">
         <h3>Ski Transfer</h3>
-        <img src="https://images.unsplash.com/photo-1599481238640-4c1288750d7a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Ski resort transfer">
-        <p>Comfortable transfer to Austria's top ski resorts – Zell am See, Ischgl, Kitzbühel and more.</p>
+        <p>Comfortable transfer to Austria's top ski resorts – Zell am See, Ischgl, Kitzbühel, St. Anton, and more with ski equipment transport.</p>
       </div>
       <div class="service-card">
+        <img src="https://images.unsplash.com/photo-1544829099-b9a0c07fad1a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
+             alt="Salzburg old town sightseeing">
         <h3>City Sightseeing</h3>
-        <img src="https://images.unsplash.com/photo-1544829099-b9a0c07fad1a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Salzburg city tour">
-        <p>Explore Salzburg's beauty with private guided sightseeing tours.</p>
+        <p>Explore Salzburg's beauty with private guided sightseeing tours including Mozart's birthplace, Hohensalzburg Fortress, and Sound of Music locations.</p>
       </div>
       <div class="service-card">
+        <img src="https://images.unsplash.com/photo-1494972308805-463bc619d34e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
+             alt="Luxury car delivery service">
         <h3>Vehicle Delivery</h3>
-        <img src="https://images.unsplash.com/photo-1502877338535-766e1452684a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Luxury car delivery">
-        <p>Discreet and reliable car delivery and pick-up service throughout Austria.</p>
+        <p>Discreet and reliable car delivery and pick-up service throughout Austria for your luxury vehicles and special occasions.</p>
       </div>
     </div>
   </div>
 
   <footer>
     <div class="quote">"Music is the heart of Salzburg – and so is elegance."</div>
-    <div>– Inspired by Mozart</div>
+    <div class="copyright">© 2023 Alpine & Amadeus. All rights reserved.</div>
   </footer>
 
   <script>
-    // Audio control
+    // Music Player Functionality
     const audio = document.getElementById('mozartAudio');
-    const playButton = document.getElementById('playMozart');
+    const toggleButton = document.getElementById('toggleMusic');
     
-    // Show play button if audio is blocked by autoplay policy
-    audio.play().catch(() => {
-      playButton.style.display = 'flex';
-      playButton.textContent = '▶️ Play Music';
-    });
+    // Try autoplay with fallback
+    const playPromise = audio.play();
     
-    playButton.addEventListener('click', () => {
+    if (playPromise !== undefined) {
+      playPromise.catch(() => {
+        // Autoplay was prevented, show button
+        toggleButton.style.display = 'flex';
+      });
+    }
+    
+    toggleButton.addEventListener('click', () => {
       if (audio.paused) {
         audio.play();
-        playButton.textContent = '⏸️ Pause';
+        toggleButton.textContent = '⏸️';
       } else {
         audio.pause();
-        playButton.textContent = '▶️ Play Music';
+        toggleButton.textContent = '▶️';
       }
     });
+    
+    // Set initial button state
+    audio.addEventListener('play', () => {
+      toggleButton.textContent = '⏸️';
+    });
+    audio.addEventListener('pause', () => {
+      toggleButton.textContent = '▶️';
+    });
 
-    // Google Maps Autocomplete simulation for GitHub display
+    // Price Calculator
     function calculateRoute() {
-      const s = document.getElementById('start').value;
-      const e = document.getElementById('end').value;
-      if (!s || !e) return alert('Please enter both addresses.');
+      const start = document.getElementById('start').value.trim();
+      const end = document.getElementById('end').value.trim();
       
-      // Simulate distance calculation for demo purposes
-      const distance = Math.max(10, Math.floor(Math.random() * 100));
-      document.getElementById('priceOutput').innerText = 
-        Distance: ${distance} km – Fixed Price: €${(distance * 2.5).toFixed(2)};
+      if (!start || !end) {
+        alert('Please enter both start and destination addresses.');
+        return;
+      }
+      
+      // In a real implementation, this would use Google Maps API
+      // For demo purposes, we'll simulate a calculation
+      const distance = Math.max(15, Math.floor(Math.random() * 150)); // Random distance 15-165 km
+      const price = (distance * 2.5).toFixed(2);
+      
+      document.getElementById('priceOutput').innerHTML = `
+        <strong>Distance:</strong> ${distance} km<br>
+        <strong>Fixed Price:</strong> €${price}
+      `;
     }
 
+    // WhatsApp Booking
     function sendWhatsApp() {
-      const s = document.getElementById('start').value;
-      const e = document.getElementById('end').value;
-      const n = document.getElementById('name').value;
-      const p = document.getElementById('phone').value;
-      const c = document.getElementById('comment').value;
-      const price = document.getElementById('priceOutput').innerText || 'Price not calculated';
+      const name = document.getElementById('name').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+      const start = document.getElementById('start').value.trim();
+      const end = document.getElementById('end').value.trim();
+      const comment = document.getElementById('comment').value.trim();
+      const priceOutput = document.getElementById('priceOutput').textContent || 'Price not calculated';
       
-      if (!s || !e || !n || !p) return alert('Please fill all required fields.');
+      if (!name || !phone || !start || !end) {
+        alert('Please fill all required fields: Name, Phone, Start, and Destination.');
+        return;
+      }
       
-      window.open(`https://wa.me/436606109666?text=${encodeURIComponent(
-        Hello, my name is ${n}.\nFrom: ${s}\nTo: ${e}\n${price}\nPhone: ${p}\nComment: ${c || 'None'}
-      )}`, '_blank');
+      const message = `New Transfer Request:
+Name: ${name}
+From: ${start}
+To: ${end}
+${priceOutput}
+Phone: ${phone}
+Special Wishes: ${comment || 'None'}`;
       
-      document.getElementById('successMsg').innerText = 'Thank you! We will contact you shortly.';
+      window.open(https://wa.me/436606109666?text=${encodeURIComponent(message)}, '_blank');
+      
+      document.getElementById('successMsg').textContent = 'Thank you! Your request has been sent. We will contact you shortly.';
+      
+      // Clear form
+      document.getElementById('name').value = '';
+      document.getElementById('phone').value = '';
+      document.getElementById('comment').value = '';
     }
 
-    // Initialize form fields for demo purposes
-    window.onload = function() {
+    // Initialize form with demo values
+    window.addEventListener('DOMContentLoaded', () => {
       document.getElementById('start').value = 'Salzburg Airport';
       document.getElementById('end').value = 'Hotel Sacher, Salzburg';
-    }
+    });
   </script>
   
-  <!-- Note: Google Maps API won't work on GitHub Pages without a proper API key -->
-  <!-- <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places&callback=initAutocomplete">
-  </script> -->
+  <!-- Google Maps API (would need actual API key for production) -->
+  <!-- <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places&callback=initAutocomplete" async defer></script> -->
 </body>
 </html>
