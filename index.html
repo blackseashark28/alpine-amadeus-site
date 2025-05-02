@@ -319,7 +319,7 @@
 </head>
 <body>
 
-  <!-- Audio Element -->
+  <!-- Audio Element with working Mozart music -->
   <audio id="mozartAudio" loop style="display:none">
     <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
   </audio>
@@ -387,20 +387,20 @@
         <p>Professional airport transportation with fixed prices and punctual service to all major airports in Austria and neighboring countries.</p>
       </div>
       <div class="service-card">
-        <img src="https://images.unsplash.com/photo-1548588681-adf41d474533?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
-             alt="Ski resort with luxury transportation">
+        <img src="https://images.unsplash.com/photo-1519659528534-7fd733a832a0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
+             alt="Snowy mountains for ski transfer">
         <h3>Ski Transfer</h3>
         <p>Comfortable transfer to Austria's top ski resorts – Zell am See, Ischgl, Kitzbühel, St. Anton, and more with ski equipment transport.</p>
       </div>
       <div class="service-card">
-        <img src="https://images.unsplash.com/photo-1544829099-b9a0c07fad1a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
-             alt="Salzburg old town sightseeing">
+        <img src="https://images.unsplash.com/photo-1600078686889-8c42747c25fe?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
+             alt="Salzburg city view">
         <h3>City Sightseeing</h3>
         <p>Explore Salzburg's beauty with private guided sightseeing tours including Mozart's birthplace, Hohensalzburg Fortress, and Sound of Music locations.</p>
       </div>
       <div class="service-card">
-        <img src="https://images.unsplash.com/photo-1494972308805-463bc619d34e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
-             alt="Luxury car delivery service">
+        <img src="https://images.unsplash.com/photo-1502877338535-766e1452684a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
+             alt="Luxury car for delivery service">
         <h3>Vehicle Delivery</h3>
         <p>Discreet and reliable car delivery and pick-up service throughout Austria for your luxury vehicles and special occasions.</p>
       </div>
@@ -413,21 +413,24 @@
   </footer>
 
   <script>
-    // Music Player Functionality
+    // Music Player Functionality with working audio
     const audio = document.getElementById('mozartAudio');
     const toggleButton = document.getElementById('toggleMusic');
     
-    // Try autoplay with fallback
-    const playPromise = audio.play();
-    
-    if (playPromise !== undefined) {
-      playPromise.catch(() => {
-        // Autoplay was prevented, show button
-        toggleButton.style.display = 'flex';
-      });
+    // Enable audio on first interaction
+    function enableAudio() {
+      audio.play()
+        .then(() => {
+          toggleButton.textContent = '⏸️';
+          document.removeEventListener('click', enableAudio);
+        })
+        .catch(e => console.log('Audio play failed:', e));
     }
     
-    toggleButton.addEventListener('click', () => {
+    document.addEventListener('click', enableAudio, { once: true });
+    
+    toggleButton.addEventListener('click', (e) => {
+      e.stopPropagation();
       if (audio.paused) {
         audio.play();
         toggleButton.textContent = '⏸️';
@@ -435,14 +438,6 @@
         audio.pause();
         toggleButton.textContent = '▶️';
       }
-    });
-    
-    // Set initial button state
-    audio.addEventListener('play', () => {
-      toggleButton.textContent = '⏸️';
-    });
-    audio.addEventListener('pause', () => {
-      toggleButton.textContent = '▶️';
     });
 
     // Price Calculator
@@ -504,8 +499,5 @@ Special Wishes: ${comment || 'None'}`;
       document.getElementById('end').value = 'Hotel Sacher, Salzburg';
     });
   </script>
-  
-  <!-- Google Maps API (would need actual API key for production) -->
-  <!-- <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places&callback=initAutocomplete" async defer></script> -->
 </body>
 </html>
