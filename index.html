@@ -6,38 +6,41 @@
   <title>Alpine & Amadeus – Deluxe</title>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700" rel="stylesheet">
   <style>
-    body { margin:0; font-family:'Segoe UI',sans-serif; background:#f8f9fa; color:#222; }
+    body { margin:0; font-family:'Segoe UI',sans-serif; background:#f8f9fa; color:#222 }
     header {
-      background:url('https://images.unsplash.com/photo-1508261305473-7f74986caccf?auto=format&fit=crop&w=1600&q=80')
+      background: url('https://images.unsplash.com/photo-1508261305473-7f74986caccf?auto=format&fit=crop&w=1600&q=80')
         center/cover;
       padding:2rem; text-align:center; color:#fff; position:relative;
     }
     header::after { content:""; position:absolute; inset:0; background:rgba(0,0,0,0.5); }
     .brand { position:relative; z-index:1; font-family:'Playfair Display',serif;
       font-size:2.5rem; font-weight:bold; }
-    nav { background:#fff; padding:1rem; text-align:center; box-shadow:0 2px 4px rgba(0,0,0,0.1); }
-    nav a { margin:0 1rem; color:#333; text-decoration:none; font-weight:500; }
-    nav a:hover { color:#d4af37; }
+    nav { background:#fff; padding:1rem; text-align:center;
+      box-shadow:0 2px 4px rgba(0,0,0,0.1); }
+    nav a { margin:0 1rem; color:#333; text-decoration:none; font-weight:500 }
+    nav a:hover { color:#d4af37 }
     .container { max-width:800px; margin:2rem auto; padding:2rem;
-      background:#fff; border-radius:16px; box-shadow:0 0 12px rgba(0,0,0,0.06); }
-    h2 { font-family:'Playfair Display',serif; text-align:center; color:#222; margin:1.5rem 0; }
+      background:#fff; border-radius:16px; box-shadow:0 0 12px rgba(0,0,0,0.06) }
+    h2 { font-family:'Playfair Display',serif; text-align:center; color:#222;
+      margin:1.5rem 0 }
     input, textarea, button { width:100%; margin:0.5rem 0; padding:0.6rem;
-      border:1px solid #ccc; border-radius:8px; font-size:1rem; }
+      border:1px solid #ccc; border-radius:8px; font-size:1rem }
     button { background:#d4af37; color:#000; border:none; font-weight:bold;
-      cursor:pointer; transition:background 0.3s; }
-    button:hover { background:#c59e2f; }
-    #priceOutput,#successMsg { text-align:center; font-weight:bold; margin-top:1rem; color:#007bff; }
-    .call-now { text-align:center; margin:2rem 0; font-size:1.2rem; font-weight:bold; color:#d4af37; }
-    .services { margin-top:2rem; }
+      cursor:pointer; transition:background 0.3s }
+    button:hover { background:#c59e2f }
+    #priceOutput,#successMsg { text-align:center; font-weight:bold; margin-top:1rem;
+      color:#007bff }
+    .call-now { text-align:center; margin:2rem 0; font-size:1.2rem;
+      font-weight:bold; color:#d4af37 }
+    .services { margin-top:2rem }
     .service-card { background:#fafafa; border-left:4px solid #d4af37;
-      padding:1rem; margin-bottom:1.5rem; border-radius:8px; }
-    .service-card h3 { margin-bottom:0.5rem; font-size:1.3rem; }
+      padding:1rem; margin-bottom:1.5rem; border-radius:8px }
+    .service-card h3 { margin-bottom:0.5rem; font-size:1.3rem }
     .service-card img { width:100%; height:auto; max-height:200px;
-      object-fit:cover; border-radius:6px; margin-bottom:0.5rem; }
+      object-fit:cover; border-radius:6px; margin-bottom:0.5rem }
     footer { background:#222; color:#fff; padding:2rem; text-align:center;
-      font-family:'Playfair Display',serif; }
-    .quote { font-style:italic; margin-bottom:0.5rem; }
-    /* Play-Button */
+      font-family:'Playfair Display',serif }
+    .quote { font-style:italic; margin-bottom:0.5rem }
     #playMozart {
       display:block; margin:1rem auto; padding:0.75rem 1.5rem;
       background:#d4af37; color:#000; border:none; border-radius:24px;
@@ -47,19 +50,23 @@
 </head>
 <body>
 
-  <!-- 1️⃣ Mozart-Player mit Play-Button -->
+  <!-- 1) Mozart-Player mit sichtbarem Play-Button -->
   <audio id="mozartAudio" preload="auto" loop>
-    <source src="https://upload.wikimedia.org/wikipedia/commons/4/4c/Mozart_Clarinet_Concerto_Adagio.mp3" type="audio/mpeg">
+    <source src="https://upload.wikimedia.org/wikipedia/commons/4/4c/Mozart_Clarinet_Concerto_Adagio.mp3"
+            type="audio/mpeg">
     Dein Browser unterstützt kein Audio.
   </audio>
-  <button id="playMozart">▶️ Play Mozart</button>
+  <button id="playMozart">▶️ Play Mozart Adagio</button>
 
   <header>
     <div class="brand">Alpine & Amadeus</div>
   </header>
 
   <nav>
-    <a href="#">Home</a><a href="#">Journal</a><a href="#">Services</a><a href="#">Contact</a>
+    <a href="#">Home</a>
+    <a href="#">Journal</a>
+    <a href="#">Services</a>
+    <a href="#">Contact</a>
   </nav>
 
   <div class="container">
@@ -83,25 +90,29 @@
 
       <div class="service-card">
         <h3>Airport Transfer</h3>
-        <img src="https://images.unsplash.com/photo-1582719473952-2d0afb7a783b?auto=format&fit=crop&w=800&q=60" alt="Airport Transfer">
+        <img src="https://images.unsplash.com/photo-1582719473952-2d0afb7a783b?auto=format&fit=crop&w=800&q=60"
+             alt="Airport Transfer">
         <p>Professional airport transportation with fixed prices and punctual service.</p>
       </div>
 
       <div class="service-card">
         <h3>Ski Transfer</h3>
-        <img src="https://images.unsplash.com/photo-1542281286-9e0a16bb7366?auto=format&fit=crop&w=800&q=60" alt="Ski Transfer">
+        <img src="https://images.unsplash.com/photo-1516574187841-cb9cc2ca948b?auto=format&fit=crop&w=800&q=60"
+             alt="Ski Transfer">
         <p>Comfortable transfer to Austria’s top ski resorts – Zell am See, Ischgl, Kitzbühel and more.</p>
       </div>
 
       <div class="service-card">
         <h3>City Sightseeing</h3>
-        <img src="https://images.unsplash.com/photo-1526481280698-3bfa7568bb58?auto=format&fit=crop&w=800&q=60" alt="City Sightseeing">
+        <img src="https://images.unsplash.com/photo-1533167640700-483a5d02840b?auto=format&fit=crop&w=800&q=60"
+             alt="City Sightseeing">
         <p>Explore Salzburg’s beauty with private guided sightseeing tours.</p>
       </div>
 
       <div class="service-card">
         <h3>Vehicle Delivery</h3>
-        <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=800&q=60" alt="Vehicle Delivery">
+        <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=800&q=60"
+             alt="Vehicle Delivery">
         <p>Discreet and reliable car delivery and pick-up service throughout Austria.</p>
       </div>
 
@@ -114,14 +125,14 @@
   </footer>
 
   <script>
-    // Play-Button für Mozarts Adagio
-    document.getElementById('playMozart').addEventListener('click', () => {
+    // Play-Button
+    document.getElementById('playMozart').onclick = () => {
       const audio = document.getElementById('mozartAudio');
       audio.play();
       document.getElementById('playMozart').style.display = 'none';
-    });
+    };
 
-    // Google Maps Autocomplete & Preisrechner
+    // Google Maps & Preisrechner
     let autocompleteStart, autocompleteEnd, directionsService;
     function initAutocomplete() {
       autocompleteStart = new google.maps.places.Autocomplete(document.getElementById('start'));
@@ -129,20 +140,19 @@
       directionsService = new google.maps.DirectionsService();
     }
     function calculateRoute() {
-      const s = document.getElementById('start').value,
-            e = document.getElementById('end').value;
-      if (!s || !e) { alert('Bitte beide Adressen eingeben.'); return; }
-      directionsService.route({
-        origin: s, destination: e, travelMode: 'DRIVING'
-      }, (res, st) => {
-        if (st === 'OK') {
-          const d = res.routes[0].legs[0].distance.value / 1000;
-          document.getElementById('priceOutput').innerText =
-            `Distance: ${d.toFixed(2)} km – Fixed Price: €${(d*2.5).toFixed(2)}`;
-        } else {
-          document.getElementById('priceOutput').innerText = 'Fehler bei der Berechnung.';
+      const s = document.getElementById('start').value, e = document.getElementById('end').value;
+      if (!s || !e) return alert('Please enter both addresses.');
+      directionsService.route({ origin:s, destination:e, travelMode:'DRIVING' },
+        (res, st) => {
+          if (st==='OK') {
+            const d = res.routes[0].legs[0].distance.value/1000;
+            document.getElementById('priceOutput').innerText =
+              `Distance: ${d.toFixed(2)} km – Fixed Price: €${(d*2.5).toFixed(2)}`;
+          } else {
+            document.getElementById('priceOutput').innerText = 'Error calculating route.';
+          }
         }
-      });
+      );
     }
     function sendWhatsApp() {
       const s = document.getElementById('start').value,
@@ -151,11 +161,11 @@
             p = document.getElementById('phone').value,
             c = document.getElementById('comment').value,
             price = document.getElementById('priceOutput').innerText;
-      if (!s||!e||!n||!p) { alert('Bitte alle Pflichtfelder ausfüllen.'); return; }
+      if (!s||!e||!n||!p) return alert('Please fill all required fields.');
       window.open(`https://wa.me/436606109666?text=${encodeURIComponent(
         `Hello, my name is ${n}.\nFrom: ${s}\nTo: ${e}\n${price}\nPhone: ${p}\nComment: ${c}`
       )}`, '_blank');
-      document.getElementById('successMsg').innerText = 'Danke! Wir melden uns in Kürze.';
+      document.getElementById('successMsg').innerText = 'Thank you! We will contact you shortly.';
     }
   </script>
   <script async defer
